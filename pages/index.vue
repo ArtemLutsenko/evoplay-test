@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import PopupContainer from '@/components/popup-container';
+import PopupContainer from '@/components/popup-container.vue';
 
 export default {
     components: { PopupContainer },

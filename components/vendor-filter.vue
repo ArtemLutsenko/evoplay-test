@@ -3,36 +3,41 @@
         <div class="vendor-filter__header">
             <div class="vendor-filter__title">
                 Фильтр:
-                <span class="vendor-filter__name">По альбомам</span>
-                <span class="vendor-filter__name">Избранное</span>
+                <span class="vendor-filter__name"
+                      :class="{'active': activeFilter === 'alphabetically'}"
+                      @click="changeSortType('alphabetically')">По альбомам</span>
+                <span class="vendor-filter__name"
+                      :class="{'active': activeFilter === 'favorite'}"
+                      @click="changeSortType('favorite')">Избранное</span>
             </div>
         </div>
         <div class="vendor-filter__scroll-wrap">
             <div class="vendor-filter__scroll">
-                <div class="vendor-filter__list">
-                    <div class="vendor-filter__item"></div>
-                    <div class="vendor-filter__item"></div>
-                    <div class="vendor-filter__item"></div>
-                </div>
+              <vendor-filter-list :activeFilter="activeFilter"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
+import VendorFilterList from '@/components/vendor-filter-list.vue';
+
 export default {
-    props: {},
-
+    components: { VendorFilterList },
     data () {
-        return {};
+        return {
+            activeFilter: localStorage.modalPhotoFilter || 'alphabetically',
+        };
     },
-
-    computed: {},
-
-    created () {
+    methods: {
+        changeSortType (sortType) {
+            if (this.activeFilter !== sortType) {
+                this.activeFilter = sortType;
+                localStorage.modalPhotoFilter = sortType;
+            }
+        },
     },
-
-    methods: {},
 };
 </script>
 
@@ -65,18 +70,35 @@ export default {
         cursor: pointer;
     }
 
+    &__name.active {
+        color: #3e5ef2;
+    }
+
     &__scroll-wrap {
         overflow: hidden;
     }
 
     &__scroll {
         width: 100%;
-        max-height: 66rem;
+        max-height: 52rem;
         overflow-y: auto;
     }
 
     &__list {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 1670px;
+
+        &-letter {
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 16px;
+            padding-left: 20px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
     }
 }
 </style>

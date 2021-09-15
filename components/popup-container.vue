@@ -1,27 +1,32 @@
 <template>
-    <div class="wrap">
-        <vendor-filter>
-        </vendor-filter>
-        <div class="wrap__bg"></div>
-    </div>
+  <div class="wrap">
+    <vendor-filter>
+    </vendor-filter>
+    <div class="wrap__bg"></div>
+  </div>
 </template>
 
 <script>
-import VendorFilter from '@/components/vendor-filter';
+import VendorFilter from '@/components/vendor-filter.vue';
 
 export default {
     components: { VendorFilter },
 
     data () {
-        return {};
+        return {
+        };
     },
 
     computed: {},
 
     created () {
     },
+    mounted () {
+    },
 
-    methods: {},
+    methods: {
+
+    },
 };
 </script>
 
